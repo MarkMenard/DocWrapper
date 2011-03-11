@@ -11,10 +11,14 @@ module DocWrapper
     end
 
     def property (documents)
-      begin
-        transform(documents[@options[:document] - 1].search(@selector))
-      rescue Nokogiri::CSS::SyntaxError
-        transform(documents[@options[:document] - 1].xpath(@selector))
+      if options[:namespaces]
+        transform(documents[@options[:document] - 1].xpath(@selector, options[:namespaces] ))
+      else
+        begin
+          transform(documents[@options[:document] - 1].search(@selector))
+        rescue Nokogiri::CSS::SyntaxError
+          transform(documents[@options[:document] - 1].xpath(@selector))
+        end
       end
     end
 
