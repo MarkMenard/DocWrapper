@@ -28,7 +28,7 @@ module DocWrapper
     end
     
     def namespaces (namespaces)
-      @namespaces
+      @namespaces = namespaces
       # define_method(:namespaces) do
       #   namespaces
       # end
@@ -69,7 +69,8 @@ module DocWrapper
       # This forces all lookups to be for the 0th document in documents if
       # the user did not specify an offset into the array.
       options = { :document => 1 }.merge(options)
-      options.merge(@namespaces) if @namespaces
+      options[:namespaces] = @namespaces if @namespaces
+      options
     end
 
     

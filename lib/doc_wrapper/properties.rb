@@ -25,7 +25,16 @@ module DocWrapper
     end
 
     def get_has_many (property_name, selector, klass, options)
-      nodes = @documents.collect { |doc| result = doc.search(selector) ; result.blank? ? nil : result }.flatten.compact
+      nodes = @documents.collect do |doc| 
+        if options[:namespaces]
+          result = doc.search(selector, options[:namespaces]) 
+        else
+          result = doc.search(selector) 
+        end
+        result.blank? ? nil : result 
+      end.flatten.compact
+      
+      
       start_row = options[:start_row] ? options[:start_row] : 0
       end_row = options[:end_row] ? options[:end_row] : nodes.size - 1
       nodes[start_row..end_row].collect { |node| klass.new(node) }

@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-
-
 describe DocWrapper do
 
   describe "The wrapped test documents" do
