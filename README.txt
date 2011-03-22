@@ -18,20 +18,20 @@ require 'nokogiri'
 require 'doc_wrapper'
 
 html = %{
-	<html>
-	<body>
-	<p class="first_name">Mark</p>
-	<p class="last_name">Menard</p>
-	</body>
-	</html>
+  <html>
+  <body>
+  <p class="first_name">Mark</p>
+  <p class="last_name">Menard</p>
+  </body>
+  </html>
 }
 
 class PersonWrapper
-	include DocWrapper::Base
-	include DocWrapper::Properties
+  include DocWrapper::Base
+  include DocWrapper::Properties
 	
-	property :first_name, :string, './p[class="first_name"]'
-	property :last_name, :string, './p[class="last_name"]'
+  property :first_name, :string, './p[class="first_name"]'
+  property :last_name, :string, './p[class="last_name"]'
 end
 
 person_wrapper = PersonWrapper.new(Nokogiri::HTML(html))
