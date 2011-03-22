@@ -1,3 +1,5 @@
+require 'time'
+
 module DocWrapper
   class TimePropertyDefinition < InnerHtmlPropertyDefinition
     def transform (result)

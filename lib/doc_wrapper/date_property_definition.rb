@@ -1,3 +1,5 @@
+require 'date'
+
 module DocWrapper
   class DatePropertyDefinition < InnerHtmlPropertyDefinition
     def transform (result)
