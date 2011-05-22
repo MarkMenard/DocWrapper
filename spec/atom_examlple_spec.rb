@@ -14,13 +14,9 @@ class AtomDocWrapper
 
     property :twitter_id, :string, './atom:id'
     property :published, :string, './atom:published'
-    property :link, :raw, './atom:link[@type="text/html"]' do |node_list|
-      node_list.first[:href]
-    end
+    property :link, :string, './atom:link[@type="text/html"]', :use_attribute => :href
     property :updated, :string, './atom:updated'
-    property :author_avatar_link, :raw, './atom:link[@type="image/png"]' do |node_list|
-      node_list.first[:href]      
-    end
+    property :author_avatar_link, :string, './atom:link[@type="image/png"]', :use_attribute => :href
     property :author, :string, './atom:author/atom:name'
     property :author_twitter_url, :string, './atom:author/atom:uri'
     property :content_text, :string, './atom:title'
