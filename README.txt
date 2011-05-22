@@ -41,3 +41,23 @@ person_wrapper.last_name # => 'Menard'
 Supported Property Types
 
 Currently DocWrapper support :string, :date, :time, :boolean, and :raw. Additionally DocWrapper supports embedded wrappers using has_one and has_many functionality very similar to ActiveRecord. See specs for example usages.
+
+Access to Node Attributes
+
+String, Date, Time and Boolean properties can reference an attribute on a node.
+
+Given the following XML document:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<feed>
+  <link type="text/html" href="http://search.twitter.com/search?q=yahoo.com" rel="alternate"/>
+</feed>
+
+You can access the link href with the following property definition.
+
+class FeedWrapper
+  include DocWrapper::Base
+  include DocWrapper::Properties
+
+  property :link, :string, '//feed/link', :use_attribute => :href
+end
