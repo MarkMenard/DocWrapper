@@ -161,8 +161,8 @@ class TestDocWrapper
   multi_property :arrayed_xpath, ["/html/body/table[2]/tr[2]/td"] do |elements|
     elements.join(" ")
   end
-  property :raw_property, :raw, "/html/body/p[8]" do |ns|
-    ns[0].attribute("class").inner_html
+  property :raw_property, :raw, "/html/body/p[8]" do |node_list|
+    node_list[0].attribute("class").inner_html
   end
   
   has_one :person, "/html/body/div", PersonWrapper
