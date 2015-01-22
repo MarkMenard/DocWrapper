@@ -36,7 +36,8 @@ describe DocWrapper do
       it { document_properties[:combined_tds].should == 'A table data A table data' }
       it { document_properties[:combined_date_and_time].should == Time.parse('12-Dec-2009 12:31 PM') }
       it { document_properties[:arrayed_xpath].should == 'name1 position1 salary1' }
-      it { document_properties.size.should == 14 }
+      it { document_properties[:float].should == 117.23 }
+      it { document_properties.size.should == 15 }
     end
 
     it { document.should respond_to(:paragraph) }
@@ -46,6 +47,7 @@ describe DocWrapper do
     it { document.should respond_to(:combined_tds) }
     it { document.should respond_to(:combined_date_and_time) }
     it { document.should respond_to(:arrayed_xpath) }
+    it { document.should respond_to(:float) }
 
     it { document.paragraph.should == 'A paragraph' }
     it { document.paragraph2.should == 'A second paragraph' }
@@ -55,6 +57,7 @@ describe DocWrapper do
     it { document.date_with_block.should == 'result from block' }
     it { document.active.should == true }
     it { document.time.should == Time.parse('12-Dec-2009 12:31 PM') }
+    it { document.float.should == 117.23 }
     it "should strip HTML &nbsp; from string properties" do
       pending
       document.space_example.should == 'Space Example'
@@ -147,6 +150,7 @@ class TestDocWrapper
   end
   property :time, :time, "/html/body/p[4]"
   property :parsed_time, :time, "/html/body/p[4]", :parser => lambda { |x| Time.parse(x) }
+  property :float, :float, "//p[@class='float']"
   property :table_data, :string, "/html/body/table[1]/tr/td[1]"
   property :paragraph2, :string, "/html/body/p[1]", :document => 2
   has_many :line_items, "/html/body/table[2]/tr", TestDocLineItem, :start_row => 1, :end_row => 4

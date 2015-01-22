@@ -4,7 +4,7 @@ module DocWrapper
     # Create a typed property definition for a document wrapper. 
     # The property_name must be a symbol.
     def property (property_name, type, selector, options = {}, &block)
-      raise "Unhandled property type: #{type.to_s}" if ![:string, :date, :time, :boolean, :raw].include?(type)
+      raise "Unhandled property type: #{type.to_s}" if ![:string, :date, :time, :boolean, :float, :raw].include?(type)
       add_property_definition(property_name,  build_property_definition(property_name, type, selector, initialize_options(options), block))
     end
 
