@@ -40,7 +40,7 @@ person_wrapper.last_name # => 'Menard'
 
 Supported Property Types
 
-Currently DocWrapper support :string, :date, :time, :boolean, and :raw. Additionally DocWrapper supports embedded wrappers using has_one and has_many functionality very similar to ActiveRecord. See specs for example usages.
+Currently DocWrapper support :string, :date, :time, :boolean, :float and :raw. Additionally DocWrapper supports embedded wrappers using has_one and has_many functionality very similar to ActiveRecord. See specs for example usages.
 
 Access to Node Attributes
 
